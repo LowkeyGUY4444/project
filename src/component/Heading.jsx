@@ -79,13 +79,13 @@ function MenuThing({ setDarkMode, darkMode, userImg, userName, userSignOut }) {
               <ListItemText primary='😎 pro chat 😎' />
             </ListItemButton>}
           <ListItemButton onClick={() => {
-            window.open('https://github.com/bpn333');
+            window.open('https://github.com/LowkeyGUY4444');
             handleClose()
           }}>
             <ListItemIcon>
               <GitHubIcon />
             </ListItemIcon>
-            <ListItemText primary="@bpn333" />
+            <ListItemText primary="@akshya.git" />
           </ListItemButton>
           <ListItemButton onClick={darkMode ? setLightModeOn : setDarkModeOn}>
             <ListItemIcon>{darkMode ? <LightModeIcon /> : <DarkModeIcon />}</ListItemIcon>
