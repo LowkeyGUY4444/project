@@ -70,13 +70,13 @@ function MenuThing({ setDarkMode, darkMode, userImg, userName, userSignOut }) {
             <ListItemIcon>
               <CallIcon />
             </ListItemIcon>
-            <ListItemText primary='😎 pro call 😎' />
+            <ListItemText primary=' Start call ' />
           </ListItemButton> :
             <ListItemButton onClick={redirectProChat}>
               <ListItemIcon>
                 <ChatIcon />
               </ListItemIcon>
-              <ListItemText primary='😎 pro chat 😎' />
+              <ListItemText primary='Start chatting ' />
             </ListItemButton>}
           <ListItemButton onClick={() => {
             window.open('https://github.com/LowkeyGUY4444');

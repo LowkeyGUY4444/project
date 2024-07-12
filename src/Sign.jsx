@@ -17,7 +17,7 @@ const SignIn = ({ signInWithGoogle }) => (
             Sign in with Google
         </Button>
         <Typography sx={{ fontSize: '20px' }}>
-            Welcome to 😎 Pro Chat 😎
+            Welcome to   Chat App 
         </Typography>
         <Typography>
             a totally original chatting platform
