@@ -9,7 +9,7 @@ import './file.css'
 
 const SignIn = ({ signInWithGoogle }) => (
     
-    <Box sx={{ textAlign: 'center', marginTop: 40 }}>
+    <Box sx={{ textAlign: 'center', marginTop: 35 ,backgroundColor:'#a0d2eb' }}>
        
         <Typography sx={{ fontSize: '20px' }}>
             <h1>Welcome to   Chat App </h1>
