@@ -5,9 +5,18 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useFirebase } from './Initializer';
+import './file.css'
 
 const SignIn = ({ signInWithGoogle }) => (
-    <Box sx={{ textAlign: 'center', marginTop: 4 }}>
+    
+    <Box sx={{ textAlign: 'center', marginTop: 40 }}>
+       
+        <Typography sx={{ fontSize: '20px' }}>
+            <h1>Welcome to   Chat App </h1>
+        </Typography>
+        <Typography>
+            <h3 style={{fontFamily:'cursive'}}>a totally original chatting platform where you <br/> can group chat</h3>
+        </Typography>
         <Button
             variant="contained"
             color="primary"
@@ -16,13 +25,8 @@ const SignIn = ({ signInWithGoogle }) => (
         >
             Sign in with Google
         </Button>
-        <Typography sx={{ fontSize: '20px' }}>
-            Welcome to   Chat App 
-        </Typography>
-        <Typography>
-            a totally original chatting platform
-        </Typography>
     </Box>
+    
 );
 
 const Sign = () => {
@@ -35,8 +39,10 @@ const Sign = () => {
 
     return (
         <>
+        <div style={{backgroundColor:'ButtonShadow'}}>
             {user ? <Navigate to="/chat" /> : <SignIn signInWithGoogle={signInWithGoogle} />}
-        </>
+        </div>
+       </>
     );
 };
 
