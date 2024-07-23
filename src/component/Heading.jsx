@@ -9,6 +9,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CallIcon from '@mui/icons-material/Call';
 import { useLocation } from 'react-router-dom';
 import ChatIcon from '@mui/icons-material/Chat';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 function MenuThing({ setDarkMode, darkMode, userImg, userName, userSignOut }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -117,6 +118,11 @@ function Heading({ setDarkMode, darkMode, userImg, userName, userSignOut, title 
       <Toolbar>
         <MenuThing setDarkMode={setDarkMode} darkMode={darkMode} userImg={userImg} userName={userName} userSignOut={userSignOut} />
         <Title title={title} />
+        <IconButton sx={{p: 2}} onClick={()=>{
+          window.open('/call')
+        }}>
+            <VideoCallIcon sx={{width: '30px', height:'30px'}} />
+        </IconButton>
         <Button color="inherit">
           <UserIcon img={userImg} />
         </Button>

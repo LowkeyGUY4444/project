@@ -13,8 +13,10 @@ function Body(props) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <Box
+    <>
+    <Box 
       sx={{
+        height:{xs:'85vh', lg:'86vh'},
         flexGrow: 1,
         overflowY: "auto",
         padding: 2,
@@ -36,6 +38,8 @@ function Body(props) {
       ))}
       <div ref={messagesEndRef} />
     </Box>
+    {/* <Box sx={{height:'200px'}}/> */}
+    </>
   );
 }
 
