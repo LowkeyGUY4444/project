@@ -107,7 +107,7 @@ function MenuThing({ setDarkMode, darkMode, userImg, userName, userSignOut }) {
 function Title({ title }) {
   return (
     <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
-      {title ? title : "😎 Pro Chat 😎"}
+      {title ? title : "chat"}
     </Typography>
   );
 }

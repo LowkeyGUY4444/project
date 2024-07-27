@@ -159,7 +159,7 @@ const Call = () => {
                 minHeight: '100vh',
             }}>
                 <Heading
-                    title="😎 Pro Call 😎"
+                    title="video call"
                     userImg={user.photoURL}
                     setDarkMode={setDarkMode}
                     darkMode={darkMode}
