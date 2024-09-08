@@ -9,7 +9,7 @@ import { useFirebase } from './Initializer';
 
 const SignIn = ({ signInWithGoogle }) => (
     
-    <Box sx={{ textAlign: 'center', marginTop: 35 ,backgroundColor:'lightgray' }}>
+    <Box sx={{ textAlign: 'center', marginTop: 35  }}>
        
         <Typography sx={{ fontSize: '20px' }}>
             <h1>Welcome to   Chat App </h1>
