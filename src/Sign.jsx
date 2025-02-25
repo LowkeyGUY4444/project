@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
 import { useFirebase } from './Initializer';
 import { Button, TextField, Container, Typography, Box, CssBaseline, Grid, Paper } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -43,7 +43,9 @@ const Sign = () => {
         displayName: name, // Default name from email
         photoURL: actualPhotoURL,
       });
-  
+      
+      await sendEmailVerification(user);
+
       //console.log("User profile updated with random photo!", actualPhotoURL);
     } catch (error) {
       console.error("Error signing up:", error.message);
@@ -60,7 +62,7 @@ const Sign = () => {
       });
   };
 
-  if (user) {
+ if (user && auth?.currentUser?.emailVerified) {
     return <Navigate to="/chat" />;
   }
 
@@ -355,6 +357,7 @@ const Sign = () => {
                     >
                       Sign Up
                     </Button>
+                    {/* {(user && !auth?.currentUser?.emailVerified) && <h1>VERIFY EMAIL</h1>} */}
 
                     <Button
                       fullWidth

@@ -31,7 +31,7 @@ const Chat = () => {
   };
   return (
     <>
-      {user ? <>
+      {(user && auth.currentUser.emailVerified) ? <>
         <CssBaseline />
         <Box>
           <Heading
