@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useFirebase } from './Initializer';
 import { Button, TextField, Container, Typography, Box, CssBaseline, Grid, Paper } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -11,6 +11,7 @@ const theme = createTheme();
 
 const Sign = () => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { user, auth } = useFirebase();
@@ -28,14 +29,25 @@ const Sign = () => {
     signInWithPopup(auth, provider);
   };
 
-  const signUpWithEmail = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-      })
-      .catch((error) => {
-        // Handle errors
+  const signUpWithEmail = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+  
+      // Fetch actual image URL from Picsum
+      const response = await fetch("https://picsum.photos/300/300");
+      const actualPhotoURL = response.url; // This is the final redirected URL
+  
+      // Update the user's profile with fetched image
+      await updateProfile(user, {
+        displayName: name, // Default name from email
+        photoURL: actualPhotoURL,
       });
+  
+      //console.log("User profile updated with random photo!", actualPhotoURL);
+    } catch (error) {
+      console.error("Error signing up:", error.message);
+    }
   };
 
   const signInWithEmail = () => {
@@ -246,6 +258,7 @@ const Sign = () => {
                       label="Name"
                       name="name"
                       autoComplete="name"
+                      onChange={(e) => setName(e.target.value)}
                       autoFocus
                       InputProps={{
                         style: { backgroundColor: 'transparent' },

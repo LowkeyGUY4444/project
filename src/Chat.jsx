@@ -14,12 +14,14 @@ const Chat = () => {
   const [messages] = useCollectionData(messagesQuery);
   const sendMessage = async (message) => {
     if (user) {
+      //console.log(user);
+      //console.log(user.email.split('@')[0]);
       await addDoc(messagesRef, {
         content: message,
         time: new Date().toISOString(),
         uid: user.uid,
-        sender: user.photoURL,
-        senderName: user.displayName, 
+        senderName: user.displayName|| user.email.split('@')[0],
+        sender: user.photoURL
       });
     }
   };

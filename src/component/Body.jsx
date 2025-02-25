@@ -25,7 +25,9 @@ function Body(props) {
         gap: 2,
       }}
     >
-      {props.messages && props.messages.map((mes, index) => (
+      {props.messages && props.messages.map((mes, index) => {
+        //console.log(mes);
+        return(
         <Message
           key={index}
           sender={mes.sender}
@@ -35,8 +37,8 @@ function Body(props) {
           darkMode={props.darkMode}
           currentUser={props.currentUser}
           uid={mes.uid}
-        />
-      ))}
+        />);
+})}
       <div ref={messagesEndRef} />
     </Box>
     {/* <Box sx={{height:'200px'}}/> */}
