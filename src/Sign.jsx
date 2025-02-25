@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
 import { useFirebase } from './Initializer';
 import { Button, TextField, Container, Typography, Box, CssBaseline, Grid, Paper } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import BackgroundVideo from './assets/background.mp4'; // Add a background video
 import GoogleLogo from './assets/google-logo.png'; // Import Google logo
+import VerifyMail from './component/verifymail';
 
 const theme = createTheme();
 
@@ -62,6 +62,9 @@ const Sign = () => {
       });
   };
 
+  if(user && !auth?.currentUser?.emailVerified){
+    return <VerifyMail user={user} />;
+  }
  if (user && auth?.currentUser?.emailVerified) {
     return <Navigate to="/chat" />;
   }
@@ -357,8 +360,6 @@ const Sign = () => {
                     >
                       Sign Up
                     </Button>
-                    {/* {(user && !auth?.currentUser?.emailVerified) && <h1>VERIFY EMAIL</h1>} */}
-
                     <Button
                       fullWidth
                       variant="contained"
