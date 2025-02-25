@@ -19,6 +19,7 @@ const Chat = () => {
         time: new Date().toISOString(),
         uid: user.uid,
         sender: user.photoURL,
+        senderName: user.displayName, 
       });
     }
   };
@@ -35,7 +36,7 @@ const Chat = () => {
             setDarkMode={setDarkMode}
             darkMode={darkMode}
             userImg={user.photoURL}
-            userName={user.displayName}
+            userName={user.displayName}    /* CHANGED   PART   FOR     NAME*/
             userSignOut={signOut}
           />
           <Body messages={messages && messages.reverse()} darkMode={darkMode} currentUser={user} />

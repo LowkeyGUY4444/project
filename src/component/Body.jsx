@@ -29,6 +29,7 @@ function Body(props) {
         <Message
           key={index}
           sender={mes.sender}
+          senderName={mes.senderName || "Unknown"}    /* CHANGED   PART   FOR     NAME*/
           content={mes.content}
           time={mes.time}
           darkMode={props.darkMode}
