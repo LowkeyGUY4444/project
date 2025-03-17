@@ -26,10 +26,10 @@ function Body(props) {
       }}
     >
       {props.messages && props.messages.map((mes, index) => {
-        //console.log(mes);
         return(
         <Message
           key={index}
+          docId={mes.id}
           sender={mes.sender}
           senderName={mes.senderName || "Unknown"}    /* CHANGED   PART   FOR     NAME*/
           content={mes.content}

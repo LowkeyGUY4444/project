@@ -4,14 +4,26 @@ import Foot from './component/Foot';
 import Body from './component/Body';
 import Box from '@mui/material/Box';
 import { collection, orderBy, query, limit, addDoc } from 'firebase/firestore';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useCollection } from 'react-firebase-hooks/firestore';
 import { useFirebase } from './Initializer';
 import { CssBaseline } from '@mui/material';
+import { useEffect, useState } from 'react';
 const Chat = () => {
   const { user, auth, firestore, darkMode, setDarkMode } = useFirebase();
   const messagesRef = collection(firestore, 'messages');
-  const messagesQuery = query(messagesRef, orderBy('time', 'desc'), limit(13));
-  const [messages] = useCollectionData(messagesQuery);
+  const messagesQuery = query(messagesRef, orderBy('time', 'asc'), limit(13));
+  const [messagesSnapshot] = useCollection(messagesQuery);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(()=>{
+    if (messagesSnapshot){
+      const messages = messagesSnapshot.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id };
+      });
+      setMessages(messages);
+    }
+  },[messagesSnapshot]);
+
   const sendMessage = async (message) => {
     if (user) {
       //console.log(user);
@@ -41,7 +53,7 @@ const Chat = () => {
             userName={user.displayName}    /* CHANGED   PART   FOR     NAME*/
             userSignOut={signOut}
           />
-          <Body messages={messages && messages.reverse()} darkMode={darkMode} currentUser={user} />
+          <Body messages={messages} darkMode={darkMode} currentUser={user} />
           <Foot sendMsg={sendMessage} />
           <Box sx={{ height: '50px' }} />
         </Box>
