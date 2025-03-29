@@ -216,6 +216,6 @@ const Call = () => {
         </> : <Navigate to="/" />}
         </>
     );
-}
+} 
 
 export default Call;
